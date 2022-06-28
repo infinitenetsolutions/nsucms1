@@ -177,45 +177,7 @@
         }
         //Add University Details End
         //Add Courses Start With Ajax
-        if($_POST["action"] == "add_courses"){
-            $add_course_name = $_POST["add_course_name"];
-            if(!empty($add_course_name)){
-                $sql = "SELECT * FROM `tbl_course`
-                        WHERE `status` = '$visible' && `course_name` = '$add_course_name'
-                        ";
-                $result = $con->query($sql);
-                if($result->num_rows > 0)
-                    echo '
-                        <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="icon fas fa-exclamation-triangle"></i> This Course already exsits!!!
-                        </div>';
-                else{
-                    $sql = "INSERT INTO `tbl_course`
-                            (`course_id`, `course_name`, `course_time`, `status`) 
-                            VALUES 
-                            (NULL,'$add_course_name','$date_variable_today_month_year_with_timing','$visible')
-                            ";
-                    if($con->query($sql))
-                        echo '
-                            <div class="alert alert-success alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <i class="icon fas fa-check"></i> Course added successfully!!!
-                            </div>';
-                    else
-                       echo '
-                            <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <i class="icon fas fa-ban"></i> Something went wrong please try again!!!
-                            </div>';
-                }
-            } else
-                echo '
-                    <div class="alert alert-warning alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <i class="icon fas fa-exclamation-triangle"></i>  Please fill out Course Name!!!
-                    </div>';
-        }
+      include './controller/add_courses.php';
         //Add Courses End With Ajax
         
            //Edit Examination Fee Details Start With Ajax
@@ -288,48 +250,10 @@
 
         
         //Edit Courses Start With Ajax
-        if($_POST["action"] == "edit_courses"){
-            $edit_course_name = $_POST["edit_course_name"];
-            $edit_course_id = $_POST["edit_course_id"];
-            if(!empty($edit_course_name && $edit_course_id)){
-                $sql = "SELECT * FROM `tbl_course`
-                        WHERE `status` = '$visible' && `course_name` = '$edit_course_name';
-                        ";
-                $result = $con->query($sql);
-                if($result->num_rows > 0){
-                    echo 'exsits';
-                }
-                else{
-                    $sql = "UPDATE `tbl_course` 
-                            SET 
-                            `course_name` = '$edit_course_name', `course_time` = '$date_variable_today_month_year_with_timing' 
-                            WHERE `status` = '$visible' && `course_id` = '$edit_course_id';
-                            ";
-                    if($con->query($sql))
-                        echo 'success';
-                    else
-                        echo 'error';
-                }
-            } else
-                echo 'empty';
-        }
+         include './controller/Edit/edit_course.php';
         //Edit Courses End With Ajax
         //Delete Courses Start With Ajax
-        if($_POST["action"] == "delete_courses"){
-            $delete_course_id = $_POST["delete_course_id"];
-            if(!empty($delete_course_id)){
-                $sql = "UPDATE `tbl_course` 
-                        SET 
-                        `status` = '$trash', `course_time` = '$date_variable_today_month_year_with_timing' 
-                        WHERE `status` = '$visible' && `course_id` = '$delete_course_id';
-                        ";
-                if($con->query($sql))
-                    echo 'success';
-                else
-                    echo 'error';
-            } else
-                echo 'empty';
-        }
+         include './controller/delete/courses_delete.php';
         //Delete Courses End With Ajax
         //Add Subject Start With Ajax
         if($_POST["action"] == "add_subjects"){
@@ -2547,4 +2471,3 @@
                                   
     //Action Section End   
     }
-?>
