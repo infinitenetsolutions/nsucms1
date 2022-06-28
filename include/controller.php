@@ -1237,11 +1237,12 @@
                                 $result_fee = $con->query($sql_fee);
                                 $row_fee = $result_fee->fetch_assoc();
         
-                                $sql_inc = "INSERT INTO `tbl_income`
+                                 $sql_inc = "INSERT INTO `tbl_income`
                                     (`id`,`reg_no`,	`course`, `academic_year`,`received_date`, `particulars`, `amount`, `payment_mode`,`check_no`,`bank_name`,`income_from`,`post_at`,`table_name`,`table_id`) 
                                     VALUES
                                     (NULL,'$registrationNumber(Reg No)','$courseId',$academicYear,'$paidDate','" . $row_fee["fee_particulars"] . "','$amounts[$i]','$PaymentMode','$chequeAndOthersNumber','$bankName','Fee','" . date("Y-m-d") . "','tbl_fee_paid','$table_feepaid_id_data')
                                     ";
+                                 
                                 $query = mysqli_query($con, $sql_inc);
                             }
                             //end tbl_income
