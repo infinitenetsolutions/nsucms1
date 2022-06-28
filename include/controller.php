@@ -1863,20 +1863,20 @@
 			        $permission_9 = $_POST["permission_9"];
     			 } else 
     			        $permission_9 = "";       
-    			if(_POST["permission_11"] != ""){
+    			if($_POST["permission_11"] != ""){
 			        $permission_11 = $_POST["permission_11"];
     			 } else 
     			        $permission_11 = ""; 
-    			if(_POST["permission_12"] != ""){
+    			if($_POST["permission_12"] != ""){
 			        $permission_12 = $_POST["permission_12"];
     			 } else 
     			        $permission_12 = ""; 
-                if(_POST["permission_13"] != ""){
+                if($_POST["permission_13"] != ""){
                     $permission_13 = $_POST["permission_13"];
                  } else 
                         $permission_13 = ""; 
               
-              if(_POST["permission_14"] != ""){
+              if($_POST["permission_14"] != ""){
                     $permission_14 = $_POST["permission_14"];
                  } else 
                         $permission_14 = ""; 

@@ -1,30 +1,7 @@
-<?php
-$page_no = "9";
-$page_no_inside = "9_2";
-include "include/authentication.php";
-include './framwork/main.php';
-$condition1 = 1;
-$msg = '';
-$limit = 50;
-if (isset($_GET["page"])) {
-    $page  = $_GET["page"];
-} else {
-    $page = 1;
-    unset($_SESSION['condition']);
-};
-$start_from = ($page - 1) * $limit;
-$s_no = $start_from + 1;
-$condition = '1 LIMIT ' . $start_from . ',' . $limit;
-if (isset($_SESSION['condition'])) {
-    if ($_SESSION['condition'] != '') {
-        $condition = $_SESSION['condition'] . '  LIMIT ' . $start_from . ',' . $limit;
-        $condition1 = $_SESSION['condition'];
-    } else {
-        $condition = '1 LIMIT ' . $start_from . ',' . $limit;
-    }
-}
-
-
+<?php 
+    $page_no = "9";
+    $page_no_inside = "9_2";
+    include "include/authentication.php"; 
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,11 +29,10 @@ if (isset($_SESSION['condition'])) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
-        .disableAll {
+        .disableAll{
             pointer-events: none;
             opacity: 0.6;
         }
-
         #dynamicChangeLoader {
             position: absolute;
             top: 50%;
@@ -96,16 +72,25 @@ if (isset($_SESSION['condition'])) {
                         <div class="card card-danger card-outline">
                             <div class="card-header card-warning">
                                 <div class="form-group float-left mb-0">
-                                    <select onchange="change_max(this.value)" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" id="dynamicChangeLimit">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                        <option value="500">500</option>
-
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" id="dynamicChangeLimit">
+                                        <option selected="selected">5</option>
+                                        <option>10</option>
+                                        <option>25</option>
+                                        <option>50</option>
+                                        <option>75</option>
+                                        <option>100</option>
+                                        <option>125</option>
+                                        <option>150</option>
+                                        <option>175</option>
+                                        <option>200</option>
+                                        <option>250</option>
+                                        <option>500</option>
+                                        <option>1000</option>
+                                        <option>2000</option>
+                                        <option>5000</option>
+                                        <option>10000</option>
+                                        <option>All</option>
                                     </select>
-
-                                   
                                 </div>
                                 <form method="POST" action="export-list" class="float-right mb-0">
                                     <input type="hidden" name="action" value="export_all_prospectus_details" />
@@ -114,37 +99,48 @@ if (isset($_SESSION['condition'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 p-3">
-                        <input type="text" value="<?= $_SESSION['q'] ?>" class="form-control form-control-sm " placeholder="Search .." name="" onkeyup="search(this.value)">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive" id="data_table">
+                
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
                     </div>
-
-                </div>
-                <div id="demo">
-                    <div class="table-responsive" class="card bg-white">
-                        <table class="table table-bordered table-striped table-responsive-lg ">
-                            <thead>
-                                <tr>
-                                    <?php thGen("tbl_prospectus_view", 'true')  ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php tdGen("tbl_prospectus_view", 'edit', 'delete', 'Product List', $condition, 50) ?>
-                            </tbody>
-                        </table>
+                    <div class="col-md-12">
+                        <div class="card card-danger card-outline">
+                            <div class="card-header card-warning">
+                                <center>
+                                    <div class="btn-group">
+                                        <button type="button" class="pr-2 pl-2 btn btn-default pagiNation" id="optionPre" name="options" value="pre">Pre</button>
+                                        <button type="button" class="pr-2 pl-2 btn btn-danger pagiNation" id="option1" name="options" value="1">1</button>
+                                        <button type="button" class="pr-2 pl-2 btn btn-default pagiNation" id="option2" name="options" value="2">2</button>
+                                        <button type="button" class="pr-2 pl-2 btn btn-default pagiNation" id="dynamicChangeNumber" name="options" value="3">3</button>
+                                        <button type="button" class="pr-2 pl-2 btn btn-default"  value="">...</button>
+                                        <button type="button" class="pr-2 pl-2 btn btn-default pagiNation" id="optionNext" name="options" value="next">Next</button>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
                     </div>
-                    <?php paginate('tbl_prospectus_view', '50', 'nsuniv-prospectus-enquiry', $condition1) ?>
+                    <!-- /.col -->
                 </div>
-
-                <!-- /.col -->
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.row -->
-        </section>
-        <!-- /.content -->
+
+        <?php include 'include/footer.php'; ?>
+
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
-
-    <?php include 'include/footer.php'; ?>
-
-
+    <!-- ./wrapper -->
+    <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -159,42 +155,122 @@ if (isset($_SESSION['condition'])) {
     <script src="dist/js/demo.js"></script>
     <!-- page script -->
     <script>
-        var th = document.getElementsByTagName('th');
-        for (i = 0; i < th.length; i++) {
-            final_text = th[i].innerText.replace('prospectus_', '');
-            document.getElementsByTagName('th')[i].innerText = final_text
-        }
-        document.getElementsByTagName('th')[1].innerText = 'Prospectus_no'
-
-
-        function prospectus() {
-            var th = document.getElementsByTagName('th');
-            for (i = 0; i < th.length; i++) {
-                final_text = th[i].innerText.replace('prospectus_', '');
-                document.getElementsByTagName('th')[i].innerText = final_text
-            }
-            document.getElementsByTagName('th')[1].innerText = 'Prospectus_no'
-        }
+        $(function() {
+            //$("#example1").DataTable();
+                 $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+            });
+        });
     </script>
-
     <script>
-        function search(data) {
-            this.prospectus();
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function() {
-                document.getElementById("demo").innerHTML = this.responseText;
-            }
-            xhttp.open("GET", "./include/search/prospectus_enquiry.php?q=" + data, true);
-            xhttp.send();
+        var paginationNumber = 1;
+        function loadTableData(lenghtOfData, paginationNumber){
+            $('#data_table').append('<center><img id = "dynamicChangeLoader" width="50px" src = "images/ajax-loader.gif" alt="Loading..." /></center>');
+            $('#dynamicChangeLimit').addClass("disableAll");
+            $('#data_table').addClass("disableAll");
+            $('#dynamicChangePaginations').addClass("disableAll");
+            $('.pagiNation').addClass("disableAll");
+            var start = 1;
+            if(paginationNumber == 1)
+                start = paginationNumber;
+            else
+                start = Number(lenghtOfData) * (Number(paginationNumber) - 1);
+            console.log(start +", "+ lenghtOfData);
+            $.ajax({
+                url: 'include/view.php?action=get_nsuniv_prospectus_enquiry',
+                type: 'POST',
+                data:{action:"get_nsuniv_prospectus_enquiry", start:start, lenghtOfData:lenghtOfData},
+                success: function(result) {
+                    $("#data_table").html(result);
+                    $('#dynamicChangeLimit').removeClass("disableAll");
+                    $('#data_table').removeClass("disableAll");
+                    $('#dynamicChangePaginations').removeClass("disableAll");
+                    $('.pagiNation').removeClass("disableAll");
+                }
+            }); 
         }
+        $(function(){
+            var lenghtOfData = $("#dynamicChangeLimit").val();
+            loadTableData(lenghtOfData, paginationNumber);
+        });
+        $(".pagiNation").click(function(){
+            $(".pagiNation").removeClass("btn-danger");
+            $(".pagiNation").addClass("btn-default");
+            $(this).removeClass("btn-default");
+            $(this).addClass("btn-danger");
+            paginationNumberTemp = $(this).attr("value");
+            if(paginationNumberTemp == "pre"){
+                if(paginationNumber != 1)
+                    paginationNumber = Number(paginationNumber) - 1;
+                else
+                    paginationNumber = 1;
+                if(paginationNumber == 1){
+                    $("#option1").removeClass("btn-default");
+                    $("#option1").addClass("btn-danger");
+                    $("#optionPre").removeClass("btn-danger");
+                    $("#optionPre").addClass("btn-default");
+                } else if(paginationNumber == 2){
+                    $("#option2").removeClass("btn-default");
+                    $("#option2").addClass("btn-danger");
+                    $("#optionPre").removeClass("btn-danger");
+                    $("#optionPre").addClass("btn-default");
+                } else{
+                    $("#dynamicChangeNumber").removeClass("btn-default");
+                    $("#dynamicChangeNumber").addClass("btn-danger");
+                    $("#optionPre").removeClass("btn-danger");
+                    $("#optionPre").addClass("btn-default");
+                    $("#dynamicChangeNumber").attr("val", paginationNumber);
+                    $("#dynamicChangeNumber").html(paginationNumber);
+                }
+                
+            }else if(paginationNumberTemp == "next"){
+                paginationNumber = Number(paginationNumber) + 1;
+                if(paginationNumber == 1){
+                    $("#option1").removeClass("btn-default");
+                    $("#option1").addClass("btn-danger");
+                    $("#optionNext").removeClass("btn-danger");
+                    $("#optionNext").addClass("btn-default");
+                } else if(paginationNumber == 2){
+                    $("#option2").removeClass("btn-default");
+                    $("#option2").addClass("btn-danger");
+                    $("#optionNext").removeClass("btn-danger");
+                    $("#optionNext").addClass("btn-default");
+                } else{
+                    $("#dynamicChangeNumber").removeClass("btn-default");
+                    $("#dynamicChangeNumber").addClass("btn-danger");
+                    $("#optionNext").removeClass("btn-danger");
+                    $("#optionNext").addClass("btn-default");
+                    $("#dynamicChangeNumber").attr("val", paginationNumber);
+                    $("#dynamicChangeNumber").html(paginationNumber);
+                }
+            } else
+                paginationNumber = paginationNumberTemp
+            var lenghtOfData = $("#dynamicChangeLimit").val();
+            loadTableData(lenghtOfData, paginationNumber);
+        });
+        $("#dynamicChangeLimit").change(function(){
+            var lenghtOfData = $("#dynamicChangeLimit").val();
+            loadTableData(lenghtOfData, paginationNumber);
+        });
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        });
+
     </script>
-
-
-    <style>
-        th {
-            text-transform: capitalize !important;
-        }
-    </style>
 </body>
 
 </html>
