@@ -693,7 +693,7 @@
                 
                        if($con->query($sql)){
 						
-						function sendsmsGET($mobileNumber,$senderId,$routeId,$message,$serverUrl,$authKey)
+						function sendsmsGET($mobileNumber,$message)
 						{
     						$senderId='NSUJSR';
     						$routeId1=1;
@@ -719,7 +719,7 @@
 						}
 							
 						$student_msg = "Dear $add_prospectus_applicant_name, Thank you for the payment of Rs. $add_prospectus_rate through $add_prospectus_payment_mode towards your Prospectus of selected Course $add_prospectus_course_name. Regards NSU";
-						sendsmsGET($mobile,'','',$student_msg);
+						sendsmsGET($mobile,$student_msg);
 						
                         echo "<script>
                                 alert('Prospectus details added successfully!!!');
