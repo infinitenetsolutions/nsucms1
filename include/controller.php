@@ -150,7 +150,7 @@
                     $sql = "INSERT INTO `tbl_university_details`
                             (`university_details_id`, `university_details_financial_start_date`, `university_details_financial_end_date`, `university_details_academic_start_date`, `university_details_academic_end_date`, `university_details_university_name`, `university_details_affiliation_details`, `university_details_address`, `university_details_email`, `university_details_contact`, `university_details_logo_image`, `university_details_website_url`, `status`) 
                             VALUES 
-                            ('','$add_university_details_financial_start_date','$add_university_details_financial_end_date','$add_university_details_academic_start_date','$add_university_details_academic_end_date','$add_university_details_university_name','$add_university_details_affiliation_details','$add_university_details_address','$add_university_details_email','$add_university_details_contact','$add_university_details_logo_image_rand','$add_university_details_website_url','$visible')
+                            (NULL,'$add_university_details_financial_start_date','$add_university_details_financial_end_date','$add_university_details_academic_start_date','$add_university_details_academic_end_date','$add_university_details_university_name','$add_university_details_affiliation_details','$add_university_details_address','$add_university_details_email','$add_university_details_contact','$add_university_details_logo_image_rand','$add_university_details_website_url','$visible')
                             ";
                     if($con->query($sql)){
                         echo "<script>
@@ -194,7 +194,7 @@
                     $sql = "INSERT INTO `tbl_course`
                             (`course_id`, `course_name`, `course_time`, `status`) 
                             VALUES 
-                            ('','$add_course_name','$date_variable_today_month_year_with_timing','$visible')
+                            (NULL,'$add_course_name','$date_variable_today_month_year_with_timing','$visible')
                             ";
                     if($con->query($sql))
                         echo '
@@ -351,7 +351,7 @@
                     $sql = "INSERT INTO `tbl_subject`
                             (`subject_id`, `subject_course_name`, `subject_code`, `subject_name`, `subject_time`, `status`) 
                             VALUES 
-                            ('','$add_subject_course_name','$add_subject_code','$add_subject_name','$date_variable_today_month_year_with_timing','$visible')
+                            (NULL,'$add_subject_course_name','$add_subject_code','$add_subject_name','$date_variable_today_month_year_with_timing','$visible')
                             ";
                     if($con->query($sql))
                         echo '
@@ -583,7 +583,7 @@
                     $sql = "INSERT INTO `tbl_latefee`
                             (`latefee_id`, `latefee_fine`, `latefee_time`, `status`) 
                             VALUES 
-                            ('','$fine_amount','$date_variable_today_month_year_with_timing','$visible');
+                            (NULL,'$fine_amount','$date_variable_today_month_year_with_timing','$visible');
                             ";
                     if($con->query($sql))
                         echo 'success';
@@ -632,7 +632,7 @@
                     $sql = "INSERT INTO `tbl_fee_due_date`
                             (`fee_due_date_id`, `fee_due_date_academic_year`, `fee_due_date_month_array`, `fee_due_date_month_date`, `fee_due_date_time`, `status`) 
                             VALUES 
-                            ('','$academic_year','$imploded_month_array','$imploded_month_date','$date_variable_today_month_year_with_timing','$visible');
+                            (NULL,'$academic_year','$imploded_month_array','$imploded_month_date','$date_variable_today_month_year_with_timing','$visible');
                             ";
                     if($con->query($sql))
                         echo 'success';
@@ -757,13 +757,13 @@
                 $sql = "INSERT INTO `tbl_prospectus`
                             (`id`, `prospectus_no`, `prospectus_applicant_name`, `prospectus_gender`, `prospectus_father_name`, `prospectus_mother_name`, `prospectus_address`, `prospectus_country`, `prospectus_state`, `prospectus_city`, `prospectus_postal_code`, `prospectus_dob`, `prospectus_emailid`,`mobile`,`prospectus_course_name`,`prospectus_session`,`prospectus_rate`,`prospectus_payment_mode`,`prospectus_deposit_to`,`bank_name`,`transaction_no`,`transaction_date`,`post_at`, `type`,`easebuzz_id`,`transaction_id`,`status`) 
                             VALUES 
-                            ('','$add_prospectus_no','$add_prospectus_applicant_name','$add_prospectus_gender','$add_prospectus_father_name','$add_prospectus_mother_name','$add_prospectus_address','$add_prospectus_country','$add_prospectus_state','$add_prospectus_city','$add_prospectus_postal_code','$add_prospectus_dob','$add_prospectus_emailid','$mobile','$add_prospectus_course_name','$add_prospectus_session','$add_prospectus_rate','$add_prospectus_payment_mode','$cashDepositTo','$add_bank_name','$add_transaction_no','$add_transaction_date','$date','','','','$visible')
+                            (NULL,'$add_prospectus_no','$add_prospectus_applicant_name','$add_prospectus_gender','$add_prospectus_father_name','$add_prospectus_mother_name','$add_prospectus_address','$add_prospectus_country','$add_prospectus_state','$add_prospectus_city','$add_prospectus_postal_code','$add_prospectus_dob','$add_prospectus_emailid','$mobile','$add_prospectus_course_name','$add_prospectus_session','$add_prospectus_rate','$add_prospectus_payment_mode','$cashDepositTo','$add_bank_name','$add_transaction_no','$add_transaction_date','$date','','','','$visible')
                             ";
                             
                $sql_prospectus = "INSERT INTO `tbl_income`
                     				(`id`, `reg_no`,`course`,`academic_year`,`received_date`, `particulars`, `amount`, `payment_mode`,`check_no`,`bank_name`,`income_from`,`post_at`) 
                     				VALUES 
-                    				('','$add_prospectus_no(Form No)','$add_prospectus_course_name','$add_prospectus_session','$add_transaction_date','Prospectus','$add_prospectus_rate','$add_prospectus_payment_mode','$add_transaction_no','$add_bank_name','Prospectus','".date("Y-m-d")."')
+                    				(NULL,'$add_prospectus_no(Form No)','$add_prospectus_course_name','$add_prospectus_session','$add_transaction_date','Prospectus','$add_prospectus_rate','$add_prospectus_payment_mode','$add_transaction_no','$add_bank_name','Prospectus','".date("Y-m-d")."')
                     				";
                 $query=mysqli_query($con,$sql_prospectus);
                 
@@ -1157,7 +1157,7 @@
 			$sql = "INSERT INTO `tbl_fee_paid`
                             (`feepaid_id`, `student_id`, `course_id`, `particular_id`, `paid_amount`, `rebate_amount`, `fine`, `balance`, `payment_mode`, `cash_deposit_to`, `cash_date`, `notes`,`receipt_date`,`bank_name`,`transaction_no`,`transaction_date`,`receipt_no`,`paid_on`,`university_details_id`,`fee_paid_time`, `status`) 
                             VALUES 
-                            ('','$admission_id','$course_id','$allPerticularsFor','$allPaid','$rebate_amount','$fine','$balance','$payment_mode','$cash_deposit_to','$cash_date','$notes','$receipt_date','$bank_name','$transaction_no','$transaction_date','NSU_$receipt_no_gen','$paid_on','$university_details_id','$fee_paid_time','$visible')
+                            (NULL,'$admission_id','$course_id','$allPerticularsFor','$allPaid','$rebate_amount','$fine','$balance','$payment_mode','$cash_deposit_to','$cash_date','$notes','$receipt_date','$bank_name','$transaction_no','$transaction_date','NSU_$receipt_no_gen','$paid_on','$university_details_id','$fee_paid_time','$visible')
                             ";
                     if($con->query($sql)){
 						
@@ -1391,7 +1391,7 @@
                 $sql_inc = "INSERT INTO `tbl_income`
 				(`id`,`reg_no`,`course`,`received_date`, `academic_year`,`particulars`, `amount`, `payment_mode` ,`check_no`,`bank_name`,`income_from`,`post_at`) 
 				VALUES 
-				('','(Extra Income)$received_from','','$received_date','','$particulars','$amount','$payment_mode','$account_number','$bank_name','Extra Income','".date("Y-m-d")."')
+				(NULL,'(Extra Income)$received_from','','$received_date','','$particulars','$amount','$payment_mode','$account_number','$bank_name','Extra Income','".date("Y-m-d")."')
 				";
 				$query=mysqli_query($con,$sql_inc);
 				
@@ -1483,7 +1483,7 @@
                 $sql = "INSERT INTO `tbl_expenses`
                             (`id`, `payment_date`, `particulars`,`amount`, `payment_mode`,`account_number`,`bank_name`,`branch_name`,`ifsc_code`,`transaction_no`, `paid_to`, `remarks`, `status`) 
                             VALUES 
-                            ('','$payment_date','$particulars','$amount','$payment_mode','$account_number','$bank_name','$branch_name','$ifsc_code','$transaction_no','$paid_to','$remarks','$visible')
+                            (NULL,'$payment_date','$particulars','$amount','$payment_mode','$account_number','$bank_name','$branch_name','$ifsc_code','$transaction_no','$paid_to','$remarks','$visible')
                             ";
                        if($con->query($sql)){
 						
@@ -1810,7 +1810,7 @@
                         $date = date_create()->format('yy-m-d');
                     	$objectSecond->sql = "";
                     	$objectSecond->insert("tbl_income","(`id`,`reg_no`,`course`,`academic_year` ,`received_date`, `particulars`, `amount`, `payment_mode`, `check_no`, `bank_name`,`income_from`,`post_at`) 
-	                    VALUES ('','$prosprectus_number(Form No)','$prospectus_course_name','$prospectus_session','$post_at','Prospectus','$prospectus_rate','Online','','','Prospectus','".date("Y-m-d")."')");
+	                    VALUES (NULL,'$prosprectus_number(Form No)','$prospectus_course_name','$prospectus_session','$post_at','Prospectus','$prospectus_rate','Online','','','Prospectus','".date("Y-m-d")."')");
 	
                         $objectSecond->sql = "";
                         $objectSecond->select("tbl_prospectus");
@@ -1955,7 +1955,7 @@
             $ThemeColor = $_POST["ThemeColor"];
             $notification = str_replace("'", "&#39;", $_POST["notification"]);
             if(!empty($ThemeColor && $notification)){
-                $check = $objectDefault->insert("notification_tbl", "(`id`, `theme`, `notification`, `visibility`, `timing`, `status`) VALUES ('', '$ThemeColor', '$notification', 'active', '$date_variable_today_month_year_with_timing', '$visible')");
+                $check = $objectDefault->insert("notification_tbl", "(`id`, `theme`, `notification`, `visibility`, `timing`, `status`) VALUES (NULL, '$ThemeColor', '$notification', 'active', '$date_variable_today_month_year_with_timing', '$visible')");
                 if($check == 1)
                     echo 'success';
                 else
@@ -2004,7 +2004,7 @@
                                     $sql .= "INSERT INTO `tbl_semester`
                                             (`semester_id`, `course_id`, `fee_academic_year`, `semester`,`exam_fee`,`exam_fine`,`exam_fee_last_date`,`fee_status`, `examname`,`name_of_school`,`examination_month`,`date_of_result`,`add_time`, `status`) 
                                             VALUES 
-                                            ('','$course_id_all','$academic_year','$semester[$i]','$exam_fee[$i]','$exam_fine[$i]','$exam_fee_last_date[$i]','$fee_status[$i]','$examname[$i]','$name_of_school[$i]','$examination_month[$i]','$date_of_result[$i]','$date_variable_today_month_year_with_timing','$visible');
+                                            (NULL,'$course_id_all','$academic_year','$semester[$i]','$exam_fee[$i]','$exam_fine[$i]','$exam_fee_last_date[$i]','$fee_status[$i]','$examname[$i]','$name_of_school[$i]','$examination_month[$i]','$date_of_result[$i]','$date_variable_today_month_year_with_timing','$visible');
                                             ";
                                 }
                             }
@@ -2034,7 +2034,7 @@
                             $sql .= "INSERT INTO `tbl_semester`
                                     (`semester_id`, `course_id`, `fee_academic_year`, `semester`,`exam_fee`,`exam_fine`,`exam_fee_last_date`,`fee_status`, `examname`,`name_of_school`,`examination_month`,`date_of_result`, `add_time`, `status`) 
                                     VALUES 
-                                    ('','$course_id','$academic_year','$semester[$i]','$exam_fee[$i]','$exam_fine[$i]','$exam_fee_last_date[$i]','$fee_status[$i]','$examname[$i]','$name_of_school[$i]','$examination_month[$i]','$date_of_result[$i]','$date_variable_today_month_year_with_timing','$visible');
+                                    (NULL,'$course_id','$academic_year','$semester[$i]','$exam_fee[$i]','$exam_fine[$i]','$exam_fee_last_date[$i]','$fee_status[$i]','$examname[$i]','$name_of_school[$i]','$examination_month[$i]','$date_of_result[$i]','$date_variable_today_month_year_with_timing','$visible');
                                     ";
                         }
                     }
@@ -2125,7 +2125,7 @@
 							$sql .= "INSERT INTO `tbl_subjects`
                                     (`subject_id`, `course_id`,`semester_id`, `fee_academic_year`, `subject_name`, `subject_code`,`full_marks`,`pass_marks`, `add_time`, `status`) 
                                     VALUES 
-                                    ('','$course_id','$semester_id','$academic_year','$subject_name[$i]','$subject_code[$i]','$full_marks[$i]','$pass_marks[$i]','$date_variable_today_month_year_with_timing','$visible');";
+                                    (NULL,'$course_id','$semester_id','$academic_year','$subject_name[$i]','$subject_code[$i]','$full_marks[$i]','$pass_marks[$i]','$date_variable_today_month_year_with_timing','$visible');";
                 
                         }
                     }
@@ -2207,7 +2207,7 @@
 							$sql .= "INSERT INTO `tbl_marks`
                                     (`marks_id`, `course_id`,`semester_id`, `fee_academic_year`, `subject_id`, `reg_no`,`internal_marks`,`external_marks`, `add_time`, `status`) 
                                     VALUES 
-                                    ('','$course_id','$semester_id','$fee_academic_year','$subject_id','$reg_no[$i]','$internal_marks[$i]','$external_marks[$i]','$date_variable_today_month_year_with_timing','$visible');";
+                                    (NULL,'$course_id','$semester_id','$fee_academic_year','$subject_id','$reg_no[$i]','$internal_marks[$i]','$external_marks[$i]','$date_variable_today_month_year_with_timing','$visible');";
                 
 						  }   
                         }
@@ -2232,7 +2232,7 @@
 							$sql .= "INSERT INTO `tbl_allot_semester`
                                     (`allot_id`, `admission_id`,`course_id`, `academic_year`, `semester_id`, `status`) 
                                     VALUES 
-                                    ('','$admission_id','$course_id','$academic_year','$semester_id[$i]','$visible');";
+                                    (NULL,'$admission_id','$course_id','$academic_year','$semester_id[$i]','$visible');";
                 
                         
                     }
@@ -2258,7 +2258,7 @@
                     $sql = "INSERT INTO `tbl_student`
                             (`student_id`, `course_id`, `university_details_id`,`semester_id`,`serial_no`, `reg_no`,`roll_no`,`student_name`,`father_name`,`type`, `create_time`,`status`) 
                             VALUES 
-                            ('','$course_id','$university_details_id','$semester_id','$serial_no','$reg_no','$roll_no','$student_name','$father_name','$type','$date_variable_today_month_year_with_timing','$visible')
+                            (NULL,'$course_id','$university_details_id','$semester_id','$serial_no','$reg_no','$roll_no','$student_name','$father_name','$type','$date_variable_today_month_year_with_timing','$visible')
                             ";
                     if($con->query($sql)){
 						
@@ -2401,7 +2401,7 @@
 						$sql_insert = "INSERT INTO `tbl_fee_status`
                             (`fee_status_id`, `admission_id`,`course_id`,`academic_year`, `particular_id`,`fee_status`) 
                             VALUES 
-                            ('','$admission_id','$course_id','$academic_year','$particular_id','No Dues')
+                            (NULL,'$admission_id','$course_id','$academic_year','$particular_id','No Dues')
                             ";
                         if($con->query($sql_insert))
 							echo "success";
