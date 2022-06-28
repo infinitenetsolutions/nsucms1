@@ -1190,7 +1190,7 @@
                                 }else{
                                      $implodedId =  ",".$_POST['fine_from'];
                                     $implodedAmount = ",0";
-                                 echo   $fine_remaining_amount= $particular_fine_for_database[$_POST['fine_from']];
+                                    $fine_remaining_amount= $particular_fine_for_database[$_POST['fine_from']];
             
             
                                      $sql = "INSERT INTO `tbl_fee_paid`
