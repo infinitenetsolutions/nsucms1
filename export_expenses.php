@@ -1,6 +1,6 @@
 <?php  
 include 'include/config.php';
-mysqli_select_db($con, 'crud');  
+
 $sql = "SELECT * FROM `tbl_expenses`";  
 $setRec = mysqli_query($con, $sql);  
 $columnHeader = '';  

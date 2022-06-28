@@ -245,6 +245,7 @@ if (isset($_POST["export"])) {
                                                 <th>Payment Date</th>
                                                 <th>Bank Name</th>
                                                 <th>Remarks</th>
+                                                <th>User</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -314,7 +315,7 @@ if (isset($_POST["export"])) {
                                                         <td><?php echo  $order["check_no"]; ?></td>
                                                         <td><?php echo date("d-m-Y", strtotime($order["received_date"])); ?></td>
                                                         <td><?php echo $order["bank_name"]; ?></td>
-                                                        <td><?php //echo $row["remarks"]; 
+                                                        <td><?php echo $row["remarks"]; 
                                                             ?></td>
 
                                                     </tr>
