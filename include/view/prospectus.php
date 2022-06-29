@@ -1,5 +1,8 @@
 <?php //Prospectus Start
 
+$visible=md5('visible');
+include '../../framwork/main.php';
+
 if ($_GET["action"] == "get_prospectus") {
 ?>
     <table id="example1" class="table table-bordered table-striped table-responsive-lg">
