@@ -177,7 +177,18 @@
                  <label>Date Of Admission</label>
                   <input type="date" name="add_date_of_admission" class="form-control" value="<?php echo date("Y-m-d"); ?>" >				
                 </div> 
-                <div class="col-4">
+                 <div class="col-4">
+                  <label>Religion</label>
+                  <select name="add_admission_religion" class="form-control">
+                  <option value="0">Select</option>					  
+                  <option value="Hindu">Hindu</option>
+                  <option value="Muslim">Muslim</option>	
+                  <option value="Sikh">Sikh</option>
+                  <option value="Christian">Christian</option>				  
+                  <option value="Others">Others</option>				  
+                  </select>	
+                </div>
+            	<div class="col-4">
                   <label>Category</label>
                   <select name="add_admission_category" class="form-control">
                   <option value="0">Select</option>					  
@@ -225,9 +236,9 @@
                   </select>
                 </div>
 			  
-			  <div class="col-4">
+			  <!--<div class="col-4">
                   	
-                </div> 
+                </div> -->
 				<div class="col-4">   
                 <label>Image</label>
                   <input type="file" name="add_admission_profile_image" id="add_admission_profile_image" class="form-control" >				

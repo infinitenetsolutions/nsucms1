@@ -28,7 +28,7 @@
 			}
 		}
 	
-    sm_registerglobal('photo','photo1','photo2','photo3','photo4','photo5','photo6','photo7','photo8');
+    //sm_registerglobal('photo','photo1','photo2','photo3','photo4','photo5','photo6','photo7','photo8');
 	
 	if(isset($_POST['submit'])){
 	   if (isset($_GET['id'])) {
@@ -433,7 +433,7 @@
                 </div> 
 				<?php if($row1['admission_hostel']=='Yes'){ ?>
 				<div class="col-4">                   
-                 <label>Hotel Leaving Date </label>
+                 <label>Hostel Leaving Date </label>
                   <input type="date" name="hostel_leave_date" value="<?php echo $row1["hostel_leave_date"]; ?>" class="form-control" >				
                 </div> 
 				<?php } ?>

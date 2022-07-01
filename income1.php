@@ -1,9 +1,6 @@
 <?php
 $page_no = "8";
 $page_no_inside = "8_2";
-include './include/function/function.inc.php';
-
-
 //authentication start
 //Starting Session
 if (empty(session_start()))
@@ -54,16 +51,7 @@ if (isset($autority)) {
 }
 //authentication end
 //export start
-$limit = 10;
-if (isset($_GET["page"])) {
-    $page  = $_GET["page"];
-} else {
-    $page = 1;
-};
-
-$start_from = ($page - 1) * $limit;
-$s_no = $start_from + 1;
-$query = "SELECT * FROM `tbl_income` WHERE `amount`!='' ORDER BY id DESC  LIMIT $start_from, $limit";
+$query = "SELECT * FROM `tbl_income` ORDER BY post_at DESC, id DESC";
 $results = mysqli_query($con, $query) or die("database error:" . mysqli_error($con));
 $allOrders = array();
 while ($order = mysqli_fetch_assoc($results)) {
@@ -175,17 +163,6 @@ if (isset($_POST["export"])) {
         td {
             white-space: nowrap;
         }
-
-        .dataTables_paginate {
-            display: none;
-        }
-
-        #dtHorizontalExample_filter {
-            display: none;
-        }
-        .datepicker{
-            display: none !important;
-        }
     </style>
 
 </head>
@@ -229,11 +206,11 @@ if (isset($_POST["export"])) {
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-2">
-                                                    From<input type="date" name="fromDate" class="form-control" value="<?php echo date("Y-m-d"); ?>"  />
+                                                    From<input type="text" name="fromDate" class="form-control" value="<?php echo date("Y-m-d"); ?>" readonly />
                                                     <?php echo $startDateMessage; ?>
                                                 </div>
                                                 <div class="col-2">
-                                                    To<input type="date" name="toDate" class="form-control" value="<?php echo date("Y-m-d"); ?>"  />
+                                                    To<input type="text" name="toDate" class="form-control" value="<?php echo date("Y-m-d"); ?>" readonly />
                                                     <?php echo $endDate; ?>
                                                 </div>
                                                 <div class="col-2">
@@ -250,15 +227,9 @@ if (isset($_POST["export"])) {
                                         <?php echo $noResult; ?>
                                     </div>
                                 </div>
-                                  <div class="row">
-                                  <div class="col-sm-9"></div>
-                                    <div class="col-sm-3">
-                                      Search:  <input type="text"  onkeyup="search(this.value)" class=" form-control form-control-sm">
-                                    </div>
-                                  </div>
-                                  <div id="search_data" class="card-body">
+                                <div class="card-body">
 
-                                    <table id="dtHorizontalExample" class="table table-bordered table-striped table-responsive">
+                                    <table id="dtHorizontalExample" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
@@ -274,10 +245,11 @@ if (isset($_POST["export"])) {
                                                 <th>Payment Date</th>
                                                 <th>Bank Name</th>
                                                 <th>Remarks</th>
+                                            
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
+                                            <?php $s_no = 1;
                                             foreach ($allOrders as $order) {
                                                 if ($order["amount"] != "") {
                                             ?>
@@ -355,9 +327,8 @@ if (isset($_POST["export"])) {
                                             ?>
                                         </tbody>
                                     </table>
-                                </div>
-                                <?php echo paginate($con, 'tbl_income', "10", 'income', 'amount!=""') ?>
 
+                                </div>
                                 <!-- /.card-header -->
                                 <div class="card-body" id="data_table">
 
@@ -399,28 +370,10 @@ if (isset($_POST["export"])) {
     <script>
         $(document).ready(function() {
             $('#dtHorizontalExample').DataTable({
-                "scrollX": false
+                "scrollX": true
             });
             $('.dataTables_length').addClass('bs-select');
         });
-        $('#example').dataTable({
-            "bPaginate": false
-        });
-    </script>
-
-    <script>
-        function search(data) {
-            if (data.length == '') {
-                window.location.href
-            } else {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    document.getElementById("search_data").innerHTML = this.responseText;
-                };
-                xmlhttp.open("GET", "./include/ajax/incomesearch.php?search=" + data, true);
-                xmlhttp.send();
-            }
-        }
     </script>
 </body>
 
