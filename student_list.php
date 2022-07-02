@@ -1,7 +1,7 @@
-<?php 
-    $page_no = "6";
-    $page_no_inside = "6_4";
-    include "include/authentication.php"; 
+<?php
+$page_no = "6";
+$page_no_inside = "6_4";
+include "include/authentication.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
-      <!-- DataTables -->
+    <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
@@ -48,7 +48,6 @@
         td {
             border-collapse: collapse;
         }
-
     </style>
 </head>
 
@@ -92,20 +91,20 @@
                         <form role="form" method="POST" id="fetchStudentDataForm">
                             <div class="card-body" style="margin-top: 0px;">
                                 <div class="row">
-                                   <div class="col-12" id="error_section"></div>
+                                    <div class="col-12" id="error_section"></div>
                                     <div class="col-5">
                                         <div class="form-group">
                                             <label>Course Name</label>
-                                            <select class="form-control" name="course_id">
+                                            <select onchange="change_semester(this.value)" class="form-control" name="course_id">
                                                 <option value="all">All</option>
-                                                <?php 
-                                                    $sql_course = "SELECT * FROM `tbl_course`
+                                                <?php
+                                                $sql_course = "SELECT * FROM `tbl_course`
                                                                    WHERE `status` = '$visible';
                                                                    ";
-                                                    $result_course = $con->query($sql_course);
-                                                    while($row_course = $result_course->fetch_assoc()){
+                                                $result_course = $con->query($sql_course);
+                                                while ($row_course = $result_course->fetch_assoc()) {
                                                 ?>
-                                                <option value="<?php echo $row_course["course_id"]; ?>"><?php echo $row_course["course_name"]; ?></option>
+                                                    <option value="<?php echo $row_course["course_id"]; ?>"><?php echo $row_course["course_name"]; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -113,16 +112,16 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>Academic Year</label>
-                                            <select class="form-control" name="academic_year">
-                                                <option value="0">Select Academic Year</option>
-                                                <?php 
-                                                    $sql_ac_year = "SELECT * FROM `tbl_university_details`
+                                            <select class="form-control" id="session_check" name="academic_year">
+                                                <option selected disabled>Select Academic Year</option>
+                                                <?php
+                                                $sql_ac_year = "SELECT * FROM `tbl_university_details`
                                                                    WHERE `status` = '$visible';
                                                                    ";
-                                                    $result_ac_year = $con->query($sql_ac_year);
-                                                    while($row_ac_year = $result_ac_year->fetch_assoc()){
+                                                $result_ac_year = $con->query($sql_ac_year);
+                                                while ($row_ac_year = $result_ac_year->fetch_assoc()) {
                                                 ?>
-                                                <option value="<?php echo $row_ac_year["university_details_id"]; ?>"><?php echo date("d/m/Y", strtotime($row_ac_year["university_details_academic_start_date"]))." to ".date("d/m/Y", strtotime($row_ac_year["university_details_academic_end_date"])); ?></option>
+                                                    <option value="<?php echo $row_ac_year["university_details_id"]; ?>"><?php echo date("d/m/Y", strtotime($row_ac_year["university_details_academic_start_date"])) . " to " . date("d/m/Y", strtotime($row_ac_year["university_details_academic_end_date"])); ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -179,7 +178,7 @@
     <!-- DataTables -->
     <script src="plugins/datatables/jquery.dataTables.js"></script>
     <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    
+
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -251,11 +250,10 @@
             });
 
         });
-
     </script>
     <script>
         $(document).ready(function() {
-            $('#fetchStudentDataForm').submit(function( event ) {
+            $('#fetchStudentDataForm').submit(function(event) {
                 $('#loader_section').append('<center id = "loading"><img width="50px" src = "images/ajax-loader.gif" alt="Currently loading" /></center>');
                 $('#fetchStudentDataButton').prop('disabled', true);
                 $.ajax({
@@ -264,9 +262,9 @@
                     data: $('#fetchStudentDataForm').serializeArray(),
                     success: function(result) {
                         $('#response').remove();
-                        if(result == 0){
+                        if (result == 0) {
                             $('#error_section').append('<div id = "response"><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="icon fas fa-ban"></i> Please select Academic Year!!!</div></div>');
-                        } else{
+                        } else {
                             $('#data_table').append('<div id = "response">' + result + '</div>');
                         }
                         $('#loading').fadeOut(500, function() {
@@ -292,6 +290,19 @@
             });
         });
 
+        function change_semester(semester) {
+            $.ajax({
+                url: 'include/ajax/add_semester.php',
+                type: 'POST',
+                data: {
+                    'data': semester
+                },
+                success: function(result) {
+                    document.getElementById('session_check').innerHTML = result;
+                }
+
+            });
+        }
     </script>
 </body>
 
