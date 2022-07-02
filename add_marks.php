@@ -228,7 +228,7 @@
                                         <div class="form-group">
                                             <label>Academic Year</label>
 											<input type="hidden" name="subject_id">
-                                            <select class="form-control" name="academic_year">
+                                            <select class="form-control" id="session_id" name="academic_year">
                                                 <option value="0">Select Academic Year</option>
                                                 <?php 
                                                     $sql_ac_year = "SELECT * FROM `tbl_university_details`
@@ -409,6 +409,20 @@
                 $("#sem").html(data);
             },
         });
+        change_semester(dept);
+    }
+    function change_semester(semester) {
+      $.ajax({
+        url: 'include/ajax/add_semester.php',
+        type: 'POST',
+        data: {
+          'data': semester
+        },
+        success: function(result) {
+          document.getElementById('session_id').innerHTML = result;
+        }
+
+      });
     }
 </script>
     <script>

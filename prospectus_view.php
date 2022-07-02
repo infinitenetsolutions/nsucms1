@@ -178,7 +178,7 @@ if(!isset($_GET['page'])){
 
                         <div class="col-4">
                             <label>Course</label>
-                            <select id="add_prospectus_course_name" name="add_prospectus_course_name" class="form-control" onchange="showdesg(this.value)">
+                            <select id="add_prospectus_course_name" onchange="change_semester(this.value)" name="add_prospectus_course_name" class="form-control" onchange="showdesg(this.value)">
                                 <option value="0">Select Course</option>
                                 <?php
                                 $sql = "select * from tbl_course";
@@ -388,18 +388,9 @@ if(!isset($_GET['page'])){
         });
     </script>
     <script>
-        function showdesg(dept) {
-            $.ajax({
-                url: 'ajaxdata1.php',
-                type: 'POST',
-                data: {
-                    depart: dept
-                },
-                success: function(data) {
-                    $("#add_prospectus_rate").html(data);
-                },
-            });
-        }
+      
+          
+      
     </script>
     <script>
         $(function() {
@@ -413,6 +404,34 @@ if(!isset($_GET['page'])){
                 "autoWidth": false,
             });
         });
+
+        function change_semester(semester) {
+
+            $.ajax({
+                url: 'ajaxdata1.php',
+                type: 'POST',
+                data: {
+                    depart: semester
+                },
+                success: function(data) {
+                    $("#add_prospectus_rate").html(data);
+                },
+            });
+
+
+            $.ajax({
+                url: 'include/ajax/add_semester.php',
+                type: 'POST',
+                data: {
+                    'data': semester
+                },
+                success: function(result) {
+                    document.getElementById('add_prospectus_session').innerHTML = result;
+                }
+
+            });
+        }
+
     </script>
 
 </body>
