@@ -1,8 +1,7 @@
 <?php
 $page_no = "8";
 $page_no_inside = "8_2";
-include './include/function/function.inc.php';
-
+include './framwork/main.php';
 
 //authentication start
 //Starting Session
@@ -104,7 +103,7 @@ if (isset($_POST["export"])) {
                     $orderData[] = $no++;
                     $orderData[] = date("d-m-Y", strtotime($order["post_at"]));
                     $orderData[] = $order["reg_no"];
-                    $sql_name = "SELECT * FROM `tbl_admission` WHERE `admission_id` = '" . $order["reg_no"] . "' ";
+                   echo  $sql_name = "SELECT * FROM `tbl_admission` WHERE `admission_id` = '" . $order["reg_no"] . "' ";
                     $result_name = $con->query($sql_name);
                     $row_name = $result_name->fetch_assoc();
                     $remove_prospectus = str_replace("(Form No)", "", $order["reg_no"]);
@@ -285,8 +284,8 @@ if (isset($_POST["export"])) {
                                                 <th>Payment Mode</th>
                                                 <th>Cheque/DD/Online No</th>
                                                 <th>Payment Date</th>
-                                                <th>Bank Name</th>
-                                                <th>Remarks</th>
+                                                <th>Bank</th>
+                                                <th>User Name</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -356,7 +355,7 @@ if (isset($_POST["export"])) {
                                                         <td><?php echo  $order["check_no"]; ?></td>
                                                         <td><?php echo date("d-m-Y", strtotime($order["received_date"])); ?></td>
                                                         <td><?php echo $order["bank_name"]; ?></td>
-                                                        <td><?php //echo $row["remarks"]; 
+                                                        <td><?= fetchRow('tbl_fee_paid','student_id='.str_replace('(Form No)','',$order["reg_no"]))['print_generated_by']
                                                             ?></td>
 
                                                     </tr>
@@ -369,7 +368,7 @@ if (isset($_POST["export"])) {
                                         </tbody>
                                     </table>
                                 </div>
-                                <?php echo paginate($con, 'tbl_income', "50", 'income', 'amount!=""') ?>
+                                <?php  paginate('tbl_income','50','income','amount!=""') ?>
 
                                 <!-- /.card-header -->
                                 <div class="card-body" id="data_table">

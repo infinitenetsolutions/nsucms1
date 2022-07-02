@@ -305,8 +305,8 @@ $row = $result->fetch_assoc();
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $('#fetchStudentDataForm').submit(function(event) {
+        // $(document).ready(function() {
+        //     $('#fetchStudentDataForm').submit(function(event) {
                 $('#loader_section').append('<center id = "loading"><img width="50px" src = "images/ajax-loader.gif" alt="Currently loading" /></center>');
                 $('#fetchStudentDataButton').prop('disabled', true);
                 $.ajax({
@@ -331,8 +331,8 @@ $row = $result->fetch_assoc();
                     }
                 });
                 event.preventDefault();
-            });
-        });
+        //     });
+        // });
     </script>
 </body>
 
