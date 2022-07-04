@@ -298,7 +298,7 @@ include "include/authentication.php";
                     'data': semester
                 },
                 success: function(result) {
-                    document.getElementById('session_check').innerHTML = result;
+                  //  document.getElementById('session_check').innerHTML = result;
                 }
 
             });
