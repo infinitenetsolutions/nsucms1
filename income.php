@@ -53,7 +53,7 @@ if (isset($autority)) {
 }
 //authentication end
 //export start
-$limit = 50;
+$limit = 20;
 if (isset($_GET["page"])) {
     $page  = $_GET["page"];
 } else {
@@ -368,7 +368,7 @@ if (isset($_POST["export"])) {
                                         </tbody>
                                     </table>
                                 </div>
-                                <?php  paginate('tbl_income','50','income','amount!=""') ?>
+                                <?php  paginate('tbl_income','20','income','amount!=""') ?>
 
                                 <!-- /.card-header -->
                                 <div class="card-body" id="data_table">
