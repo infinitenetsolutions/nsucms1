@@ -6498,7 +6498,7 @@ if (isset($_GET["action"])) {
                             <td><?php echo $s_no; ?></td>
                             <td style="color:#8a0410;"><b><?php if ($row["prospectus_no"] != "") echo $row["prospectus_no"];
                                                             else echo "Please Give Prospectus No"; ?></b></td>
-                            <td><?php echo $row["prospectus_course_name"] ?></td>
+                            <td><?php echo $row["course_name"] ?></td>
                             <td><?php echo $row["prospectus_applicant_name"] ?></td>
                             <td><?php echo $row["mobile"] ?></td>
                             <td><?php echo $row["revert_by"] ?></td>
