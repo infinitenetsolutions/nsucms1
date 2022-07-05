@@ -6502,7 +6502,7 @@ if (isset($_GET["action"])) {
                             <td><?php echo $row["prospectus_applicant_name"] ?></td>
                             <td><?php echo $row["mobile"] ?></td>
                             <td><?php echo $row["revert_by"] ?></td>
-                            <td><?php echo $row["payment_status"] ?></td>
+                            <td><?= $row["payment_status"] == '' ? 'No':$row["payment_status"] ?></td>
                             <td><?php echo $row["post_at"] ?></td>
                             <td class="project-actions text-center">
                                 <button class="btn btn-info btn-sm" onclick="document.getElementById('view_university_prospectus_enquiry<?php echo $row["id"]; ?>').style.display='block'">
