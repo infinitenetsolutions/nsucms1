@@ -6479,15 +6479,15 @@ if (isset($_GET["action"])) {
             </thead>
             <tbody>
                 <?php
-                $objectSecond->select("tbl_prospectus");
+                $objectSecond->select("tbl_prospectus_view");
                 if (strtolower($lenghtOfData) == "all") {
-                    $objectSecond->where("`status` = '$visible' && `type` = 'enquiry' ORDER BY `id` DESC ");
+                    $objectSecond->where(" 1 ORDER BY `id` DESC ");
                     $s_no = 1;
                 } else if ($start == 1) {
-                    $objectSecond->where("`status` = '$visible' && `type` = 'enquiry' ORDER BY `id` DESC LIMIT " . $lenghtOfData);
+                    $objectSecond->where(" 1 ORDER BY `id` DESC LIMIT " . $lenghtOfData);
                     $s_no = $start;
                 } else {
-                    $objectSecond->where("`status` = '$visible' && `type` = 'enquiry' ORDER BY `id` DESC LIMIT " . $start . ", " . $lenghtOfData);
+                    $objectSecond->where(" 1 ORDER BY `id` DESC LIMIT " . $start . ", " . $lenghtOfData);
                     $s_no = ++$start;
                 }
                 $result = $objectSecond->get();
