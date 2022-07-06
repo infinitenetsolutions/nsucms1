@@ -355,7 +355,8 @@ if (isset($_POST["export"])) {
                                                         <td><?php echo  $order["check_no"]; ?></td>
                                                         <td><?php echo date("d-m-Y", strtotime($order["received_date"])); ?></td>
                                                         <td><?php echo $order["bank_name"]; ?></td>
-                                                        <td><?= fetchRow('tbl_fee_paid','student_id='.str_replace('(Form No)','',$order["reg_no"]))['print_generated_by']
+                                                        
+                                                        <td><?= fetchRow('tbl_fee_paid','student_id='.str_replace('(Reg No)','',$order["reg_no"]))['print_generated_by'] =='' ? fetchRow('tbl_prospectus',' prospectus_no='.str_replace('(Form No)','',$order["reg_no"]))['user_name'] : fetchRow('tbl_fee_paid','student_id='.str_replace('(Reg No)','',$order["reg_no"]))['print_generated_by']
                                                             ?></td>
 
                                                     </tr>
