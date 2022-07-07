@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(0);
+
     // Create connection
     include "include/config.php";
     include "include/PHPExcel/PHPExcel.php";
