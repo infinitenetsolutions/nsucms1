@@ -1,6 +1,6 @@
 <?php
 include "../config.php";
-
+include '../../framwork/main.php';
 $search_data = $_GET['search'];
 if ($search_data != '') {
     $query = "SELECT * FROM `tbl_income` WHERE `reg_no` LIKE '%$search_data%' || `course` LIKE '%$search_data%' || `academic_year` LIKE '%$search_data%' || `received_date` LIKE '%$search_data%' || `particulars` LIKE '%$search_data%' || `amount` LIKE '%$search_data%' || `payment_mode` LIKE '%$search_data%' || `check_no` LIKE '%$search_data%' || `bank_name` LIKE '%$search_data%' || `income_from` LIKE '%$search_data%' || `post_at` LIKE '%$search_data%'  &&  `amount`!='' ORDER BY id DESC LIMIT 100 ";
@@ -92,10 +92,13 @@ if ($search_data != '') {
                         <td><?php echo $order["amount"]; ?></td>
                         <td><?php echo $order["payment_mode"]; ?></td>
                         <td><?php echo  $order["check_no"]; ?></td>
-                        <td><?php echo date("d-m-Y", strtotime($order["received_date"])); ?></td>
-                        <td><?php echo $order["bank_name"]; ?></td>
-                        <td><?php //echo $row["remarks"]; 
+                        <td><?= date('d-m-Y', strtotime(fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['transaction_date'] == '' ? fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]))['transaction_date'] : fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['transaction_date']))
                             ?></td>
+                        <td><?php echo $order["bank_name"]; ?></td>
+
+                        <td><?= fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['print_generated_by'] == '' ? fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]))['user_name'] : fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['print_generated_by']
+                            ?></td>
+
 
                     </tr>
             <?php
