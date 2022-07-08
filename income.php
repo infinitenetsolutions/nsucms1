@@ -103,7 +103,7 @@ if (isset($_POST["export"])) {
                     $orderData[] = $no++;
                     $orderData[] = date("d-m-Y", strtotime($order["post_at"]));
                     $orderData[] = $order["reg_no"];
-                   echo  $sql_name = "SELECT * FROM `tbl_admission` WHERE `admission_id` = '" . $order["reg_no"] . "' ";
+                    echo  $sql_name = "SELECT * FROM `tbl_admission` WHERE `admission_id` = '" . $order["reg_no"] . "' ";
                     $result_name = $con->query($sql_name);
                     $row_name = $result_name->fetch_assoc();
                     $remove_prospectus = str_replace("(Form No)", "", $order["reg_no"]);
@@ -353,10 +353,11 @@ if (isset($_POST["export"])) {
                                                         <td><?php echo $order["amount"]; ?></td>
                                                         <td><?php echo $order["payment_mode"]; ?></td>
                                                         <td><?php echo  $order["check_no"]; ?></td>
-                                                        <td><?php echo date("d-m-Y", strtotime($order["received_date"])); ?></td>
+                                                        <td><?= date('d-m-Y',strtotime(fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['transaction_date'] == '' ? fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]))['transaction_date'] : fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['transaction_date']))
+                                                            ?></td>
                                                         <td><?php echo $order["bank_name"]; ?></td>
-                                                        
-                                                        <td><?= fetchRow('tbl_fee_paid','student_id='.str_replace('(Reg No)','',$order["reg_no"]))['print_generated_by'] =='' ? fetchRow('tbl_prospectus',' prospectus_no='.str_replace('(Form No)','',$order["reg_no"]))['user_name'] : fetchRow('tbl_fee_paid','student_id='.str_replace('(Reg No)','',$order["reg_no"]))['print_generated_by']
+
+                                                        <td><?= fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['print_generated_by'] == '' ? fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]))['user_name'] : fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['print_generated_by']
                                                             ?></td>
 
                                                     </tr>
@@ -369,7 +370,7 @@ if (isset($_POST["export"])) {
                                         </tbody>
                                     </table>
                                 </div>
-                                <?php  paginate('tbl_income','20','income','amount!=""') ?>
+                                <?php paginate('tbl_income', '20', 'income', 'amount!=""') ?>
 
                                 <!-- /.card-header -->
                                 <div class="card-body" id="data_table">
