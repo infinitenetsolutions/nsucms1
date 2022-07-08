@@ -62,7 +62,7 @@ if (isset($_GET["page"])) {
 
 $start_from = ($page - 1) * $limit;
 $s_no = $start_from + 1;
-$query = "SELECT * FROM `tbl_income` WHERE `amount`!='' ORDER BY id DESC  LIMIT $start_from, $limit";
+ $query = "SELECT * FROM `tbl_income` WHERE `amount`!='0' && `amount`!='' ORDER BY id DESC  LIMIT $start_from, $limit";
 $results = mysqli_query($con, $query) or die("database error:" . mysqli_error($con));
 $allOrders = array();
 while ($order = mysqli_fetch_assoc($results)) {
@@ -80,7 +80,7 @@ if (isset($_POST["export"])) {
     } else {
         $orderQuery = "
 		SELECT * FROM tbl_income 
-		WHERE  post_at >= '" . $_POST["fromDate"] . "' AND post_at <= '" . $_POST["toDate"] . "' ORDER BY post_at DESC, id DESC";
+		WHERE   post_at >= '" . $_POST["fromDate"] . "' AND post_at <= '" . $_POST["toDate"] . "' ORDER BY post_at DESC, id DESC";
         $orderResult = mysqli_query($con, $orderQuery) or die("database error:" . mysqli_error($con));
         $filterOrders = array();
         while ($order = mysqli_fetch_assoc($orderResult)) {
@@ -370,7 +370,7 @@ if (isset($_POST["export"])) {
                                         </tbody>
                                     </table>
                                 </div>
-                                <?php paginate('tbl_income', '20', 'income', 'amount!=""') ?>
+                                <?php paginate('tbl_income', '20', 'income', "`amount`!='0' && `amount`!=''") ?>
 
                                 <!-- /.card-header -->
                                 <div class="card-body" id="data_table">
