@@ -455,7 +455,7 @@ if (isset($_POST["paidId"])) {
                                                                     <td align="left" class="narmal"><?php echo strtoupper($row["course_name"]); ?></td>
                                                                     <td align="left" class="narmal">Payment Date</td>
                                                                     <td align="left" class="narmal">:</td>
-                                                                    <td align="left" class="narmal"><?php echo date("d-m-Y", strtotime($row["receipt_date"])); ?></td>
+                                                                    <td align="left" class="narmal"><?php  echo date("d-m-Y", strtotime($row["transaction_date"]));  ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td align="left" class="narmal">Academic Session</td>
@@ -465,7 +465,7 @@ if (isset($_POST["paidId"])) {
 
                                                                     <td align="left" class="narmal">Receipt Date</td>
                                                                     <td align="left" class="narmal">:</td>
-                                                                    <td align="left" class="narmal"> <?php echo date("d-m-Y", strtotime($row["transaction_date"])); ?> <?php echo str_split($row['fee_paid_time'], 13)[1]; ?> </td>
+                                                                    <td align="left" class="narmal"> <?php echo date("d-m-Y", strtotime($row["receipt_date"]));  ?> <?php echo str_split($row['fee_paid_time'], 13)[1]; ?> </td>
 
                                                                 </tr>
 
