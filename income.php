@@ -62,7 +62,7 @@ if (isset($_GET["page"])) {
 
 $start_from = ($page - 1) * $limit;
 $s_no = $start_from + 1;
- $query = "SELECT * FROM `tbl_income` WHERE `amount`!='0' && `amount`!='' ORDER BY id DESC  LIMIT $start_from, $limit";
+$query = "SELECT * FROM `tbl_income` WHERE `amount`!='0' && `amount`!='' ORDER BY id DESC  LIMIT $start_from, $limit";
 $results = mysqli_query($con, $query) or die("database error:" . mysqli_error($con));
 $allOrders = array();
 while ($order = mysqli_fetch_assoc($results)) {
@@ -350,15 +350,23 @@ if (isset($_POST["export"])) {
                                                             ?>
 
                                                         </td>
+                                                        <?php $fee_paid_data = fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]) . '&& STR_TO_DATE(replace(`fee_paid_time`,",",""), "%d %M %Y")="' . $order["received_date"] . '" && `paid_amount` LIKE "%' . $order["amount"] . '%" ORDER BY `feepaid_id` DESC');
+                                                        $prospectus_data = fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]));
+
+                                                        if ($fee_paid_data == '' && $prospectus_data== '') {
+                                                            $fee_paid_data = fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]) . '&& STR_TO_DATE(replace(`fee_paid_time`,",",""), "%d %M %Y")="' . $order["received_date"] . '" && `fine` LIKE "%' . $order["amount"] . '%" ORDER BY `feepaid_id` DESC ');
+                                                        }
+
+                                                        ?>
+
                                                         <td><?php echo $order["amount"]; ?></td>
                                                         <td><?php echo $order["payment_mode"]; ?></td>
                                                         <td><?php echo  $order["check_no"]; ?></td>
-                                                        <td><?= date('d-m-Y',strtotime(fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['transaction_date'] == '' ? fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]))['transaction_date'] : fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['transaction_date']))
+                                                        <td><?= date('d-m-Y', strtotime($fee_paid_data['transaction_date'] == '' ? $prospectus_data['transaction_date'] : $fee_paid_data['transaction_date']))
                                                             ?></td>
                                                         <td><?php echo $order["bank_name"]; ?></td>
 
-                                                        <td><?= fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['print_generated_by'] == '' ? fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]))['user_name'] : fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]))['print_generated_by']
-                                                            ?></td>
+                                                        <td><?= $fee_paid_data['print_generated_by'] == '' ? $prospectus_data['user_name'] : $fee_paid_data['print_generated_by'] ?></td>
 
                                                     </tr>
                                             <?php
