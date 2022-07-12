@@ -457,8 +457,6 @@ error_reporting(0);
             fontColor('R4', 'DC3545', '10', 'serif', true);
             $objPHPExcel->getActiveSheet()->getStyle('R4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
             $objPHPExcel->getActiveSheet()->getStyle('R4')->applyFromArray($thinBorder);
-
-
             // ----------------------------------------------------------------
             // Data Section Start
             // ----------------------------------------------------------------
