@@ -351,7 +351,7 @@ if (isset($_POST["export"])) {
 
                                                         </td>
                                                         <?php $fee_paid_data = fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]) . '&& STR_TO_DATE(replace(`fee_paid_time`,",",""), "%d %M %Y")="' . $order["received_date"] . '" && `paid_amount` LIKE "%' . $order["amount"] . '%" ORDER BY `feepaid_id` DESC');
-                                                        $prospectus_data = fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]));
+                                                            $prospectus_data = fetchRow('tbl_prospectus', ' prospectus_no=' . str_replace('(Form No)', '', $order["reg_no"]));
 
                                                         if ($fee_paid_data == '' && $prospectus_data== '') {
                                                             $fee_paid_data = fetchRow('tbl_fee_paid', 'student_id=' . str_replace('(Reg No)', '', $order["reg_no"]) . '&& STR_TO_DATE(replace(`fee_paid_time`,",",""), "%d %M %Y")="' . $order["received_date"] . '" && `fine` LIKE "%' . $order["amount"] . '%" ORDER BY `feepaid_id` DESC ');

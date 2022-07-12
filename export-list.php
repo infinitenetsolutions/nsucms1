@@ -190,13 +190,23 @@ error_reporting(0);
             fontColor('Q4', 'DC3545', '10', 'serif', true);
             $objPHPExcel->getActiveSheet()->getStyle('Q4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
             $objPHPExcel->getActiveSheet()->getStyle('Q4')->applyFromArray($thinBorder);
-            
-            
-             // ----------------------------------------------------------------
+
+
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue('R4', "Father Whatsapp No.");
             fontColor('R4', 'DC3545', '10', 'serif', true);
             $objPHPExcel->getActiveSheet()->getStyle('R4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
             $objPHPExcel->getActiveSheet()->getStyle('R4')->applyFromArray($thinBorder);
+
+                // ----------------------------------------------------------------
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('S4', " Category ");
+                fontColor('S4', 'DC3545', '10', 'serif', true);
+                $objPHPExcel->getActiveSheet()->getStyle('S4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                $objPHPExcel->getActiveSheet()->getStyle('S4')->applyFromArray($thinBorder);
+    
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('T4', " Religion ");
+                fontColor('T4', 'DC3545', '10', 'serif', true);
+                $objPHPExcel->getActiveSheet()->getStyle('T4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                $objPHPExcel->getActiveSheet()->getStyle('T4')->applyFromArray($thinBorder);
 
             // ----------------------------------------------------------------
             // Data Section Start
@@ -224,7 +234,10 @@ error_reporting(0);
                         ->setCellValue('O'.$inc, $row["admission_residential_address"]." ".$row["admission_state"]." ".$row["admission_city"]." ".$row["admission_district"]." ".$row["admission_pin_code"])
                         ->setCellValue('P'.$inc, $row["admission_gender"])
                         ->setCellValue('Q'.$inc, $row["admission_father_phoneno"])
-                        ->setCellValue('R'.$inc, $row["admission_father_whatsappno"]);
+                        ->setCellValue('R'.$inc, $row["admission_father_whatsappno"])
+                        ->setCellValue('S'.$inc, $row["admission_category"])
+                        ->setCellValue('T'.$inc, $row["admission_religion"]);
+
 
                     $objPHPExcel->getActiveSheet()->getStyle('B'.$inc)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                     $objPHPExcel->getActiveSheet()->getStyle('C'.$inc)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
@@ -524,4 +537,3 @@ error_reporting(0);
             exit(0);
         }
     }
-?>
