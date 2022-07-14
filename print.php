@@ -1,6 +1,6 @@
 <?php
-$page_no = "7";
-$page_no_inside = "7_13";
+  $page_no = "7";
+  $page_no_inside = "7_7";
 include "include/authentication.php";
 ?>
 <?php
