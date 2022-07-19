@@ -4,8 +4,8 @@ $page_no_inside = "4_1";
 include "include/authentication.php";
 include "include/config.php";
 include "include/function/function.inc.php";
-if(!isset($_GET['page'])){
-    $_GET['page']=1;
+if (!isset($_GET['page'])) {
+    $_GET['page'] = 1;
 }
 ?>
 <!DOCTYPE html>
@@ -71,7 +71,7 @@ if(!isset($_GET['page'])){
 
                             </div>
                             <!-- /.card-body -->
-                            <?php paginate($con, 'tbl_prospectus', '10', 'prospectus_view','status="'.md5('visible').'"') ?>
+                            <?php paginate($con, 'tbl_prospectus', '10', 'prospectus_view', 'status="' . md5('visible') . '"') ?>
                         </div>
                         <!-- /.card -->
                     </div>
@@ -181,7 +181,8 @@ if(!isset($_GET['page'])){
                             <select id="add_prospectus_course_name" onchange="change_semester(this.value)" name="add_prospectus_course_name" class="form-control" onchange="showdesg(this.value)">
                                 <option value="0">Select Course</option>
                                 <?php
-                                $sql = "select * from tbl_course";
+                                $visible = md5('visible');
+                                $sql = "select * from tbl_course where status = '$visible'";
                                 $query = mysqli_query($con, $sql);
                                 while ($row = mysqli_fetch_array($query)) {
                                 ?>
@@ -362,7 +363,7 @@ if(!isset($_GET['page'])){
                     }
                 });
 
-            }); 
+            });
         });
     </script>
     <script>
@@ -388,9 +389,9 @@ if(!isset($_GET['page'])){
         });
     </script>
     <script>
-      
-          
-      
+
+
+
     </script>
     <script>
         $(function() {
@@ -431,7 +432,6 @@ if(!isset($_GET['page'])){
 
             });
         }
-
     </script>
 
 </body>

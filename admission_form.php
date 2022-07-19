@@ -135,7 +135,8 @@ include "include/authentication.php";
                     <select id="course" onchange="change_semester(this.value)" name="add_admission_course_name" class="form-control" required>
                       <option value="0">Select Course</option>
                       <?php
-                      $sql = "select * from tbl_course";
+                      $visible = md5('visible');
+                      $sql = "select * from tbl_course where status = '$visible'";
                       $query = mysqli_query($con, $sql);
                       while ($row = mysqli_fetch_array($query)) {
                       ?>
